@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -20,6 +21,7 @@ export class User {
   name: string;
 
   @Column()
+  @Unique(['email'])
   email: string;
 
   @Column()

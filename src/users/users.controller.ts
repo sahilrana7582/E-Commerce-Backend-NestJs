@@ -1,6 +1,16 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { UsersService } from './provider/users.service';
 import { CreateUserDto } from './dtos/create-users.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -15,7 +25,7 @@ export class UsersController {
     };
   }
 
-  @Post(':id')
+  @Get(':id')
   public async getUserById(@Param('id', ParseIntPipe) id: number) {
     const user = await this.usersService.getUserById(id);
     return {
@@ -32,6 +42,28 @@ export class UsersController {
       success: true,
       data: user,
       message: 'User created successfully',
+    };
+  }
+
+  @Delete(':id')
+  public async deleteUser(@Param('id', ParseIntPipe) id: number) {
+    await this.usersService.deleteUser(id);
+    return {
+      success: true,
+      message: 'User deleted successfully',
+    };
+  }
+
+  @Put(':id')
+  public async updateUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    const user = await this.usersService.updateUser(id, updateUserDto);
+    return {
+      success: true,
+      data: user,
+      message: 'User updated successfully',
     };
   }
 }
