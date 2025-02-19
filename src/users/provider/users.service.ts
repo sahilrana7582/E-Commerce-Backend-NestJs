@@ -10,12 +10,14 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/create-users.dto';
 import { QueryFailedError } from 'typeorm';
 import { UpdateUserDto } from '../dtos/update-user.dto';
+import { BcryptProvider } from 'src/auth/providers/bcrypt.provider';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private readonly bcryptProvider: BcryptProvider,
   ) {}
 
   public async getUsers(): Promise<User[]> {
@@ -34,9 +36,10 @@ export class UsersService {
   }
 
   public async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const user = this.userRepository.create(createUserDto);
+    const newUser = this.userRepository.create(createUserDto);
+    newUser.password = await this.bcryptProvider.hash(newUser.password);
     try {
-      return await this.userRepository.save(user);
+      return await this.userRepository.save(newUser);
     } catch (error) {
       if (
         error instanceof QueryFailedError &&
