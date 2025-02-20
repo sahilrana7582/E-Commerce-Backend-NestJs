@@ -63,7 +63,7 @@ export class UsersService {
 
   public async updateUser(
     id: number,
-    updateUserDto: UpdateUserDto,
+    updateUserDto: UpdateUserDto
   ): Promise<User> {
     const user: User | null = await this.getUserById(id);
     if (!user) {

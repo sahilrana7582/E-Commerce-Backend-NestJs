@@ -37,6 +37,11 @@ export class User {
   })
   role: Role;
 
+  @Column({
+    nullable: true,
+  })
+  avatar: string;
+
   @CreateDateColumn()
   @Exclude()
   createdAt: Date;

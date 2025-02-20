@@ -12,7 +12,6 @@ export class CloudinaryService {
     });
   }
 
-  // Method to upload an image using async/await
   async uploadImage(file: Express.Multer.File): Promise<UploadApiResponse> {
     if (!file || !file.buffer) {
       throw new Error('No file provided or file buffer is empty');
@@ -31,7 +30,6 @@ export class CloudinaryService {
         }
       );
 
-      // Convert buffer to a readable stream and pipe it to Cloudinary
       streamifier.createReadStream(file.buffer).pipe(uploadStream);
     });
   }

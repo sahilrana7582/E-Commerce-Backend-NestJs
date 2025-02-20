@@ -14,7 +14,7 @@ import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
   imports: [
     JwtModule.register({
       secret: 'your_secret_key',
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '1d' },
     }),
     TypeOrmModule.forFeature([User]),
     forwardRef(() => UsersModule),

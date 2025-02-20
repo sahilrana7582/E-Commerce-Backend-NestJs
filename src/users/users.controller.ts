@@ -79,16 +79,22 @@ export class UsersController {
     };
   }
 
-  @Post('/upload-avatar')
+  @Post('/upload-avatar/:id')
   @UseInterceptors(FileInterceptor('avatar'))
-  public async uploadAvatar(@UploadedFile() file: Express.Multer.File) {
+  public async uploadAvatar(
+    @Param('id', ParseIntPipe) id: number,
+    @UploadedFile() file: Express.Multer.File
+  ) {
     if (!file) {
       throw new Error('No file uploaded');
     }
     const uploadResult = await this.cloudinaryService.uploadImage(file);
+    const user = await this.usersService.updateUser(id, {
+      avatar: uploadResult.url,
+    });
     return {
       success: true,
-      data: uploadResult,
+      data: user,
       message: 'Avatar uploaded successfully',
     };
   }
