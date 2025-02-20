@@ -8,6 +8,7 @@ import { UsersService } from 'src/users/provider/users.service';
 import { HashProvider } from './providers/hash.provider';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthController } from './auth.controller';
     }),
     TypeOrmModule.forFeature([User]),
     forwardRef(() => UsersModule),
+    CloudinaryModule,
   ],
   providers: [
     BcryptProvider,

@@ -8,6 +8,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UploadedFile,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -15,10 +16,15 @@ import { UsersService } from './provider/users.service';
 import { CreateUserDto } from './dtos/create-users.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthGuard } from './guards/auth.guard';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { CloudinaryService } from 'src/cloudinary/provider/cloudinary.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly cloudinaryService: CloudinaryService
+  ) {}
   @Get()
   @UseGuards(AuthGuard)
   public async getUsers() {
@@ -70,6 +76,20 @@ export class UsersController {
       success: true,
       data: user,
       message: 'User updated successfully',
+    };
+  }
+
+  @Post('/upload-avatar')
+  @UseInterceptors(FileInterceptor('avatar'))
+  public async uploadAvatar(@UploadedFile() file: Express.Multer.File) {
+    if (!file) {
+      throw new Error('No file uploaded');
+    }
+    const uploadResult = await this.cloudinaryService.uploadImage(file);
+    return {
+      success: true,
+      data: uploadResult,
+      message: 'Avatar uploaded successfully',
     };
   }
 }

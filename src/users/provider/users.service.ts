@@ -11,6 +11,7 @@ import { CreateUserDto } from '../dtos/create-users.dto';
 import { QueryFailedError } from 'typeorm';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { BcryptProvider } from 'src/auth/providers/bcrypt.provider';
+import { CloudinaryService } from 'src/cloudinary/provider/cloudinary.service';
 
 @Injectable()
 export class UsersService {
@@ -18,6 +19,7 @@ export class UsersService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly bcryptProvider: BcryptProvider,
+    private readonly cloudinaryService: CloudinaryService
   ) {}
 
   public async getUsers(): Promise<User[]> {
