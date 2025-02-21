@@ -14,7 +14,11 @@ export class Product {
   @Column()
   name: string;
 
-  @Column()
+  @Column({
+    type: 'numeric',
+    precision: 10,
+    scale: 2,
+  })
   price: number;
 
   @Column()
