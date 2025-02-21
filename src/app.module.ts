@@ -6,6 +6,8 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entity/users.entity';
 import { AuthModule } from './auth/auth.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ProductsModule } from './products/products.module';
+import { Product } from './products/entity/product.entity';
 
 @Module({
   imports: [
@@ -16,13 +18,14 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
       username: 'postgres',
       password: '1234',
       database: 'ecommerce',
-      entities: [User],
+      entities: [User, Product],
       synchronize: true,
       autoLoadEntities: true,
     }),
     UsersModule,
     AuthModule,
     CloudinaryModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
