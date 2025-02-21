@@ -1,7 +1,12 @@
+import { CartItem } from 'src/shopingCart/entity/cartItem.entity';
+import { ShopingCart } from 'src/shopingCart/entity/shopingCart.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -33,6 +38,11 @@ export class Product {
   @Column()
   category: string;
 
+  @OneToMany(() => CartItem, (cartItem) => cartItem.product)
+  cartItems: CartItem[];
+
+  @Column()
+  subCategory: string;
   @Column()
   brand: string;
 

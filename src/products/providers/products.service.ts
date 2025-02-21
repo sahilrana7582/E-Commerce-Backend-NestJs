@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Product } from '../entity/product.entity';
-import { Repository, UpdateResult } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+import { DataSource, Repository, UpdateResult } from 'typeorm';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { validateOrReject } from 'class-validator';
 import { UpdateProductDto } from '../dto/update-product.dto';
@@ -10,7 +10,10 @@ import { UpdateProductDto } from '../dto/update-product.dto';
 export class ProductsService {
   constructor(
     @InjectRepository(Product)
-    private readonly productRepository: Repository<Product>
+    private readonly productRepository: Repository<Product>,
+
+    @InjectDataSource()
+    private readonly dataSource: DataSource
   ) {}
   public findAll() {
     return this.productRepository.find();
@@ -52,5 +55,29 @@ export class ProductsService {
     return {
       message: 'Product deleted successfully',
     };
+  }
+
+  public async createMany(products: CreateProductDto[]) {
+    const queryRunner = this.dataSource.createQueryRunner();
+
+    try {
+      await queryRunner.connect();
+      await queryRunner.startTransaction();
+      const result: Product[] = [];
+
+      for (const product of products) {
+        const newProduct = this.productRepository.create(product);
+        await queryRunner.manager.save(Product, newProduct);
+        result.push(newProduct);
+      }
+
+      await queryRunner.commitTransaction();
+      return result;
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      throw error;
+    } finally {
+      await queryRunner.release();
+    }
   }
 }

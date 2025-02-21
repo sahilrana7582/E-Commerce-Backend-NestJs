@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/entity/product.entity';
+import { ShopingCartModule } from './shopingCart/shopinCart.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { Product } from './products/entity/product.entity';
     AuthModule,
     CloudinaryModule,
     ProductsModule,
+    ShopingCartModule,
   ],
   controllers: [AppController],
   providers: [AppService],

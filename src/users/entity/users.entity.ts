@@ -1,8 +1,10 @@
 import { Exclude } from 'class-transformer';
+import { ShopingCart } from 'src/shopingCart/entity/shopingCart.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
@@ -41,6 +43,9 @@ export class User {
     nullable: true,
   })
   avatar: string;
+
+  @OneToOne(() => ShopingCart, (shopingCart) => shopingCart.user)
+  shopingCart: ShopingCart;
 
   @CreateDateColumn()
   @Exclude()

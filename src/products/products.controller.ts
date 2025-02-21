@@ -1,8 +1,17 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+// e-commerce-backend/src/products/products.controller.ts
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ProductsService } from './providers/products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { validateOrReject } from 'class-validator';
 
 @Controller('products')
 export class ProductsController {
@@ -33,5 +42,10 @@ export class ProductsController {
   @Delete(':id')
   public delete(@Param('id', ParseIntPipe) id: number) {
     return this.productsService.delete(id);
+  }
+
+  @Post('many')
+  public createMany(@Body() products: CreateProductDto[]) {
+    return this.productsService.createMany(products);
   }
 }
