@@ -1,3 +1,4 @@
+import { OrderItem } from 'src/order/entity/order-item.entity';
 import { CartItem } from 'src/shopingCart/entity/cartItem.entity';
 import { ShopingCart } from 'src/shopingCart/entity/shopingCart.entity';
 import {
@@ -40,6 +41,9 @@ export class Product {
 
   @OneToMany(() => CartItem, (cartItem) => cartItem.product)
   cartItems: CartItem[];
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
+  orderItems: OrderItem[];
 
   @Column()
   subCategory: string;

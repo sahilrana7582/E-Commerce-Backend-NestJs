@@ -1,8 +1,11 @@
+import { Order } from 'src/order/entity/order.entity';
 import { UserProfile } from 'src/userprofile/entity/user-profile.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -17,6 +20,9 @@ export class Address {
     nullable: true,
   })
   userProfile?: UserProfile;
+
+  @OneToMany(() => Order, (order) => order.address)
+  orders: Order[];
 
   @Column()
   city: string;

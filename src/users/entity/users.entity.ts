@@ -1,4 +1,5 @@
 import { Exclude } from 'class-transformer';
+import { Order } from 'src/order/entity/order.entity';
 import { ShopingCart } from 'src/shopingCart/entity/shopingCart.entity';
 import { UserProfile } from 'src/userprofile/entity/user-profile.entity';
 import {
@@ -6,6 +7,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   Unique,
@@ -52,6 +54,9 @@ export class User {
 
   @OneToOne(() => ShopingCart, (shopingCart) => shopingCart.user)
   shopingCart: ShopingCart;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
 
   @CreateDateColumn()
   @Exclude()

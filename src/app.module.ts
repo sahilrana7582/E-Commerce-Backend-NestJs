@@ -14,6 +14,9 @@ import { AddressModule } from './address/address.module';
 import { Address } from './address/entity/address.entity';
 import { UserProfile } from './userprofile/entity/user-profile.entity';
 import { ShopingCart } from './shopingCart/entity/shopingCart.entity';
+import { Order } from './order/entity/order.entity';
+import { OrderModule } from './order/order.module';
+import { OrderItem } from './order/entity/order-item.entity';
 
 @Module({
   imports: [
@@ -24,7 +27,7 @@ import { ShopingCart } from './shopingCart/entity/shopingCart.entity';
       username: 'postgres',
       password: '1234',
       database: 'ecommerce',
-      entities: [User, Product, UserProfile, Address, ShopingCart],
+      entities: [User, Product, UserProfile, Address, ShopingCart, Order, OrderItem],
       synchronize: true,
       autoLoadEntities: true,
     }),
@@ -35,6 +38,7 @@ import { ShopingCart } from './shopingCart/entity/shopingCart.entity';
     ShopingCartModule,
     UserprofileModule,
     AddressModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
