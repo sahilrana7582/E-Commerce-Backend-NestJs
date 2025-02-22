@@ -9,6 +9,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/entity/product.entity';
 import { ShopingCartModule } from './shopingCart/shopinCart.module';
+import { UserprofileModule } from './userprofile/userprofile.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ShopingCartModule } from './shopingCart/shopinCart.module';
     CloudinaryModule,
     ProductsModule,
     ShopingCartModule,
+    UserprofileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
