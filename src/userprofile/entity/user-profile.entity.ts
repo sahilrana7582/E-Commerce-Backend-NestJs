@@ -1,3 +1,4 @@
+import { Address } from 'src/address/entity/address.entity';
 import { User } from 'src/users/entity/users.entity';
 import {
   Column,
@@ -13,17 +14,21 @@ export class UserProfile {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  address: string;
-
-  @Column()
+  @Column({ nullable: true })
   phone: string;
+
+  @OneToOne(() => Address, (address) => address.userProfile, {
+    onDelete: 'CASCADE',
+    eager: true,
+    nullable: true,
+  })
+  @JoinColumn()
+  address?: Address;
 
   @OneToOne(() => User, (user) => user.userProfile, {
     onDelete: 'CASCADE',
     eager: true,
   })
-  @JoinColumn()
   user: User;
 
   @CreateDateColumn()

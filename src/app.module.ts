@@ -10,6 +10,10 @@ import { ProductsModule } from './products/products.module';
 import { Product } from './products/entity/product.entity';
 import { ShopingCartModule } from './shopingCart/shopinCart.module';
 import { UserprofileModule } from './userprofile/userprofile.module';
+import { AddressModule } from './address/address.module';
+import { Address } from './address/entity/address.entity';
+import { UserProfile } from './userprofile/entity/user-profile.entity';
+import { ShopingCart } from './shopingCart/entity/shopingCart.entity';
 
 @Module({
   imports: [
@@ -20,7 +24,7 @@ import { UserprofileModule } from './userprofile/userprofile.module';
       username: 'postgres',
       password: '1234',
       database: 'ecommerce',
-      entities: [User, Product],
+      entities: [User, Product, UserProfile, Address, ShopingCart],
       synchronize: true,
       autoLoadEntities: true,
     }),
@@ -30,6 +34,7 @@ import { UserprofileModule } from './userprofile/userprofile.module';
     ProductsModule,
     ShopingCartModule,
     UserprofileModule,
+    AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],

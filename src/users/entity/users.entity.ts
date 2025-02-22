@@ -5,6 +5,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
   Unique,
@@ -46,6 +47,7 @@ export class User {
   avatar: string;
 
   @OneToOne(() => UserProfile, (userProfile) => userProfile.user)
+  @JoinColumn()
   userProfile: UserProfile;
 
   @OneToOne(() => ShopingCart, (shopingCart) => shopingCart.user)
