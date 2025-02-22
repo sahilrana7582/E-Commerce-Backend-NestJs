@@ -1,115 +1,69 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# E-Commerce Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-<p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-<p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-<!-- ... existing badges ... -->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository for building a robust e-commerce application.
+## Overview
+This is an e-commerce backend application built with NestJS and TypeORM, designed to handle user management, product management, order processing, and shopping cart functionalities.
 
 ## Features
 
-- **User Authentication**: Secure user registration and login.
-- **Product Management**: Add, update, and delete products.
-- **Shopping Cart**: Users can add products to their cart and manage their orders.
-- **Payment Integration**: Support for various payment gateways.
-- **Order Management**: Track and manage user orders.
-- **Admin Dashboard**: A dedicated interface for managing products, orders, and users.
+### User Management
+- **User Registration**: Users can register with their name, email, password, and role.
+- **User Authentication**: JWT-based authentication for secure access.
+- **User Profile**: Users can create and manage their profiles, including uploading avatars.
 
-## Project setup
+### Product Management
+- **Product Creation**: Admins can add new products with details like name, price, description, stock, category, and brand.
+- **Product Update**: Admins can update existing product details.
+- **Product Deletion**: Admins can delete products from the inventory.
+- **Product Listing**: Users can view all available products.
 
-```bash
-$ npm install
-```
+### Order Processing
+- **Order Creation**: Users can create orders by selecting products from their cart.
+- **Order Retrieval**: Users can view their past orders.
+- **Order Deletion**: Users can delete their orders if needed.
 
-## Compile and run the project
+### Shopping Cart
+- **Add to Cart**: Users can add products to their shopping cart.
+- **View Cart**: Users can view all items in their cart, including total price and quantity.
+- **Update Cart**: Users can update the quantity of items in their cart.
+- **Remove from Cart**: Users can remove items from their cart.
 
-```bash
-# development
-$ npm run start
+### Address Management
+- **Address Creation**: Users can add addresses to their profiles.
+- **Address Retrieval**: Users can view their saved addresses.
 
-# watch mode
-$ npm run start:dev
+### Cloud Storage
+- **Image Upload**: Users can upload images (e.g., avatars) to Cloudinary for storage.
 
-# production mode
-$ npm run start:prod
-```
+## Technologies Used
+- **NestJS**: A progressive Node.js framework for building efficient and scalable server-side applications.
+- **TypeORM**: An ORM for TypeScript and JavaScript (ES7, ES6, ES5) that supports many SQL-based databases.
+- **PostgreSQL**: A powerful, open-source object-relational database system.
+- **Cloudinary**: A cloud-based service for managing images and videos.
 
-## Usage
-
-1. **Start the server**: Run the development server using `npm run start:dev`.
-2. **Access the API**: Use tools like Postman or Insomnia to interact with the API endpoints.
-3. **Frontend Integration**: Connect your frontend application to the backend API for a seamless user experience.
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, follow these steps:
-
-1. **Build the application**: Run `npm run build`.
-2. **Deploy using Mau**: 
+## Installation
+1. Clone the repository:
    ```bash
-   $ npm install -g mau
-   $ mau deploy
+   git clone https://github.com/yourusername/e-commerce-backend.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd e-commerce-backend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Set up your environment variables in a `.env` file (refer to `.env.example` for structure).
+5. Run the application:
+   ```bash
+   npm run start:dev
    ```
 
-## Resources
+## API Documentation
+Refer to the API documentation for detailed information on endpoints, request/response formats, and authentication.
 
-- [NestJS Documentation](https://docs.nestjs.com)
-- [Discord channel](https://discord.gg/G7Qnnhy) for support and community interaction.
-- [Official video courses](https://courses.nestjs.com/) for hands-on learning.
-- [NestJS Devtools](https://devtools.nestjs.com) for real-time application visualization.
-
-## Contribution
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeature`).
-3. Make your changes and commit them (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Open a pull request.
-
-## Support
-
-Nest is an MIT-licensed open source project. It thrives thanks to the support of our sponsors and backers. If you'd like to contribute, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
 
 ## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
