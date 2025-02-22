@@ -8,10 +8,12 @@ import { CreateProfileDto } from '../dto/create-profile.dto';
 export class UserprofileService {
   constructor(
     @InjectRepository(UserProfile)
-    private userProfileRepository: Repository<UserProfile>,
+    private userProfileRepository: Repository<UserProfile>
   ) {}
+
   public async getUserProfile(userId: number) {
-    const userProfile: UserProfile | null = await this.userProfileRepository.findOne({
+    const userProfile: UserProfile | null =
+      await this.userProfileRepository.findOne({
         where: { user: { id: userId } },
       });
     if (!userProfile) {

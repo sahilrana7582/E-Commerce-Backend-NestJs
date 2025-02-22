@@ -1,6 +1,12 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { UserprofileService } from './provider/userprofile.service';
-import { UserProfile } from './entity/user-profile.entity';
 import { CreateProfileDto } from './dto/create-profile.dto';
 
 @Controller('userprofile')

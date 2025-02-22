@@ -8,5 +8,4 @@ export class CreateProfileDto {
   @IsString()
   @IsNotEmpty()
   phone: string;
-
 }

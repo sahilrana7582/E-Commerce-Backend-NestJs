@@ -1,6 +1,13 @@
 import { User } from 'src/users/entity/users.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 @Entity()
 export class UserProfile {
   @PrimaryGeneratedColumn()
@@ -12,7 +19,10 @@ export class UserProfile {
   @Column()
   phone: string;
 
-  @OneToOne(() => User, (user) => user.userProfile, { onDelete: 'CASCADE', eager: true })
+  @OneToOne(() => User, (user) => user.userProfile, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
   @JoinColumn()
   user: User;
 
